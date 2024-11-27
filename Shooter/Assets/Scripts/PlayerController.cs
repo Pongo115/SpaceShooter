@@ -9,6 +9,12 @@ public class PlayerController : MonoBehaviour
     public Transform minXValue;
     public Transform maxXValue;
 
+    public GameObject BulletPrefab;
+    public Transform GunEndPosition;
+
+    public float FireRate;
+    private float TimeSinceLastAction;
+
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +28,15 @@ public class PlayerController : MonoBehaviour
 
         PlayerMovement();
 
+        if (Input.GetKey(KeyCode.Space)) 
+        {
+            Shoot();
+        }
+
+        if (Input.GetKey(KeyCode.W))
+        {
+            Shoot();
+        }
     }
 
     void PlayerMovement()
@@ -48,5 +63,15 @@ public class PlayerController : MonoBehaviour
 
     }
 
-}
+    void Shoot()
+    {
+        TimeSinceLastAction += Time.deltaTime;
+        if (TimeSinceLastAction >= FireRate)
+        {
+            Instantiate(BulletPrefab, GunEndPosition.position, Quaternion.identity);
+            TimeSinceLastAction = 0;
+        }
+    }
+   
+}   
   
