@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public int hp = 3;
 
     public float moveSpeed = 2f;
     public Transform minXValue;
@@ -19,7 +20,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        GameManager.playerController = this;
     }
 
     // Update is called once per frame
@@ -28,7 +29,7 @@ public class PlayerController : MonoBehaviour
 
         PlayerMovement();
 
-        if (Input.GetKey(KeyCode.Space)) 
+        if (Input.GetKey(KeyCode.Space))
         {
             Shoot();
         }
@@ -37,6 +38,15 @@ public class PlayerController : MonoBehaviour
         {
             Shoot();
         }
+
+
+        if (hp <= 0)
+        {
+            Debug.Log("koniec gry");
+            Application.Quit();
+
+        }
+
     }
 
     void PlayerMovement()
@@ -72,6 +82,14 @@ public class PlayerController : MonoBehaviour
             TimeSinceLastAction = 0;
         }
     }
-   
-}   
-  
+    public void HittedByBullet()
+    {
+        // hp = 2
+        //GameManager.uiManager.DisableHpSprite(hp);
+
+        hp = hp - 1;
+        //1
+        Debug.Log("Trafiono");
+        //Debug.Log(hp);
+    }
+}
