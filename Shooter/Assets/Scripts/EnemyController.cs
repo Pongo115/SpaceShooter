@@ -45,11 +45,13 @@ public class EnemyController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Bullet")
         {
+            Instantiate(expolisionEffectPrefab, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
 
         if (collision.gameObject.tag == "Player")
         {
+            Instantiate(expolisionEffectPrefab, transform.position, Quaternion.identity);
             GameManager.playerController.HittedByBullet();
             Destroy(gameObject);
         }

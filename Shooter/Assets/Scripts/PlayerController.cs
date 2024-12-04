@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
 
         if (hp <= 0)
         {
-            Debug.Log("koniec gry");
+           // Debug.Log("koniec gry");
             Application.Quit();
 
         }
@@ -85,11 +85,9 @@ public class PlayerController : MonoBehaviour
     public void HittedByBullet()
     {
         // hp = 2
-        //GameManager.uiManager.DisableHpSprite(hp);
+        GameManager.uiManager.DisableHpSprite(hp);
 
         hp = hp - 1;
         //1
-        Debug.Log("Trafiono");
-        //Debug.Log(hp);
     }
 }
